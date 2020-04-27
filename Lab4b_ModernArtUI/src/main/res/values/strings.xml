@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ModerArtUI</string>
+    <string name="more_information">More Information</string>
+    <string name="dialog_message">Inspired by artists such as Piet Mondrian and Ben Nicholson.\n\nClick below to learn more!</string>
+    <string name="dialog_visit_moma">Visit MOMA</string>
+    <string name="dialog_not_now">Not Now</string>
+    <string name="url_moma">https://www.moma.org/</string>
+</resources>

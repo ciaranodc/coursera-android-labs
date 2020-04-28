@@ -23,16 +23,16 @@ public class ActivityLoaderActivity extends Activity {
 			public void onClick(View v) {
 
 				startBookMarksActivity();
-			
+
 			}
 		});
 	}
 
 	private void startBookMarksActivity() {
-		
-		Log.i(TAG, "Entered startBookMarksActivity()");
-	
-		// TODO - Start the BookmarksActivity
 
+		Log.i(TAG, "Entered startBookMarksActivity()");
+
+		// TODO - Start the BookmarksActivity
+		startActivity(new Intent(this, BookmarksActivity.class));
 	}
 }

@@ -90,12 +90,10 @@ public class AddToDoActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 
-
-
 				// TODO - Indicate result and finish
+				setResult(RESULT_CANCELED, null);
+				finish();
 
-                
-                
 			}
 		});
 
@@ -105,13 +103,11 @@ public class AddToDoActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 
-
 				// TODO - Reset data to default values
+				mTitleText.setText("");
+				mPriorityRadioGroup.check(mDefaultPriorityButton.getId());
+				mStatusRadioGroup.check(mDefaultStatusButton.getId());
 
-
-                
-                
-                
 				// reset date and time
 				setDefaultDateTime();
 
@@ -130,15 +126,13 @@ public class AddToDoActivity extends Activity {
 
 
 				// TODO - Get the current Priority
-				Priority priority = null;
+				Priority priority = getPriority();
 
 				// TODO - Get the current Status
-				Status status = null;
+				Status status = getStatus();
 
 				// TODO - Get the current ToDoItem Title
-
-
-				String titleString = null;
+				String titleString = getToDoTitle();
 
 
 				// Construct the Date string
@@ -150,14 +144,11 @@ public class AddToDoActivity extends Activity {
 						fullDate);
 
 				// TODO - return data Intent and finish
+				setResult(RESULT_OK, data);
+				finish();
 
-
-
-
-            
-            
 			}
-		    });
+		});
 	}
 
 	// Do not modify below this point.
@@ -212,35 +203,35 @@ public class AddToDoActivity extends Activity {
 	private Priority getPriority() {
 
 		switch (mPriorityRadioGroup.getCheckedRadioButtonId()) {
-		case R.id.lowPriority: {
-			return Priority.LOW;
-		}
-		case R.id.highPriority: {
-			return Priority.HIGH;
-		}
-		default: {
-			return Priority.MED;
-		}
+			case R.id.lowPriority: {
+				return Priority.LOW;
+			}
+			case R.id.highPriority: {
+				return Priority.HIGH;
+			}
+			default: {
+				return Priority.MED;
+			}
 		}
 	}
 
 	private Status getStatus() {
 
 		switch (mStatusRadioGroup.getCheckedRadioButtonId()) {
-		case R.id.statusDone: {
-			return Status.DONE;
-		}
-		default: {
-			return Status.NOTDONE;
-		}
+			case R.id.statusDone: {
+				return Status.DONE;
+			}
+			default: {
+				return Status.NOTDONE;
+			}
 		}
 	}
 
 	private String getToDoTitle() {
 		return mTitleText.getText().toString();
 	}
-	
-	
+
+
 	// DialogFragment used to pick a ToDoItem deadline date
 
 	public static class DatePickerFragment extends DialogFragment implements
@@ -262,7 +253,7 @@ public class AddToDoActivity extends Activity {
 
 		@Override
 		public void onDateSet(DatePicker view, int year, int monthOfYear,
-				int dayOfMonth) {
+							  int dayOfMonth) {
 			setDateString(year, monthOfYear, dayOfMonth);
 
 			dateView.setText(dateString);

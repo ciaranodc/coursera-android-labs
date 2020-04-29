@@ -16,6 +16,7 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,31 +48,30 @@ public class ToDoManagerActivity extends ListActivity {
 		getListView().setFooterDividersEnabled(true);
 
 		// TODO - Inflate footerView for footer_view.xml file
-		TextView footerView = null;
-
+		LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+		TextView footerView = (TextView) layoutInflater.inflate(R.layout.footer_view, null);
 
 		// NOTE: You can remove this block once you've implemented the assignment
-		if (null == footerView) {
-			return;
-		}
+//		if (null == footerView) {
+//			return;
+//		}
 		// TODO - Add footerView to ListView
+		getListView().addFooterView(footerView);
 
-
-		
-        
-        
 		// TODO - Attach Listener to FooterView
 		footerView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 
-
 				//TODO - Implement OnClick().
+				Intent intent = new Intent(ToDoManagerActivity.this, AddToDoActivity.class);
+				startActivityForResult(intent, ADD_TODO_ITEM_REQUEST);
 			}
 		});
 
 		// TODO - Attach the adapter to this ListActivity's ListView
-		
+		getListView().setAdapter(mAdapter);
+
 	}
 
 	@Override
@@ -83,12 +83,10 @@ public class ToDoManagerActivity extends ListActivity {
 		// if user submitted a new ToDoItem
 		// Create a new ToDoItem from the data Intent
 		// and then add it to the adapter
-
-
-            
-            
-            
-		
+		if (requestCode == ADD_TODO_ITEM_REQUEST && resultCode == RESULT_OK) {
+			ToDoItem toDoItem = new ToDoItem(data);
+			mAdapter.add(toDoItem);
+		}
 
 	}
 
@@ -126,14 +124,14 @@ public class ToDoManagerActivity extends ListActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case MENU_DELETE:
-			mAdapter.clear();
-			return true;
-		case MENU_DUMP:
-			dump();
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
+			case MENU_DELETE:
+				mAdapter.clear();
+				return true;
+			case MENU_DUMP:
+				dump();
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
 		}
 	}
 

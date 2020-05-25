@@ -84,9 +84,8 @@ public class BubbleActivity extends Activity {
                 / mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 
         // TODO - make a new SoundPool, allowing up to 10 streams
-        mSoundPool = new SoundPool.Builder()
-                .setMaxStreams(10)
-                .build();
+        final int MAX_STREAMS = 10;
+        mSoundPool = new SoundPool(MAX_STREAMS, AudioManager.STREAM_MUSIC, 0);
 
         // TODO - set a SoundPool OnLoadCompletedListener that calls setupGestureDetector()
         mSoundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {

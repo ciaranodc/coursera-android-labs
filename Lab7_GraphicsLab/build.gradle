@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 18
     buildToolsVersion "28.0.3"
 
     defaultConfig {
         applicationId "course.labs.graphicslab"
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion 14
+        targetSdkVersion 18
 
         testApplicationId "course.labs.graphicslab.test"
         testInstrumentationRunner "android.test.InstrumentationTestRunner"

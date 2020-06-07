@@ -89,7 +89,7 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
                     Toast.makeText(PlaceViewActivity.this,
                             "You already have this location badge.", Toast.LENGTH_LONG).show();
                 } else {
-                    new PlaceDownloaderTask(PlaceViewActivity.this, true).execute(mLastLocationReading);
+                    new PlaceDownloaderTask(PlaceViewActivity.this, sHasNetwork).execute(mLastLocationReading);
                 }
             }
 

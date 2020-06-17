@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Lab8b_DailySelfie</string>
+    <string name="toolbar_text">Daily Selfie</string>
 </resources>

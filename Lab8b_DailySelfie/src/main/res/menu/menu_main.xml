@@ -6,9 +6,9 @@
 
     <item
         android:id="@+id/action_camera"
-        android:orderInCategory="300"
-        android:title="User"
         android:icon="@drawable/ic_camera"
-        app:showAsAction="ifRoom"></item>
+        android:orderInCategory="300"
+        android:title="@string/menu_item_camera_title"
+        app:showAsAction="ifRoom" />
 
 </menu>

@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Lab8b_DailySelfie</string>
     <string name="toolbar_text">Daily Selfie</string>
+    <string name="menu_item_camera_title">Camera</string>
+    <string name="content_description_photo_image">Photo image</string>
+    <string name="camera_button_description">Camera Button</string>
+    <string name="photo_image">Photo image</string>
 </resources>

@@ -5,4 +5,5 @@
     <string name="content_description_photo_image">Photo image</string>
     <string name="camera_button_description">Camera Button</string>
     <string name="photo_image">Photo image</string>
+    <string name="placeholder_text">Placeholder text</string>
 </resources>

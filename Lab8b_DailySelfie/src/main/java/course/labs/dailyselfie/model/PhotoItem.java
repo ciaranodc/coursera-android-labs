@@ -1,13 +1,13 @@
-package course.labs.dailyselfie;
+package course.labs.dailyselfie.model;
 
 import android.graphics.drawable.Drawable;
 
-class PhotoItem {
+public class PhotoItem {
 
     private Drawable photo;
     private String timestamp;
 
-    PhotoItem(Drawable photo, String timestamp) {
+    public PhotoItem(Drawable photo, String timestamp) {
         this.photo = photo;
         this.timestamp = timestamp;
     }

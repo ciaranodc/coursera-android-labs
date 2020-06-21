@@ -26,6 +26,8 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intending;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.toPackage;
+import static androidx.test.espresso.matcher.ViewMatchers.hasChildCount;
+import static androidx.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withParent;
@@ -67,7 +69,7 @@ public class MainActivityInstrumentedTest {
     }
 
     @Test
-    public void clickCameraIcon_LaunchesCameraActivity() {
+    public void clickCameraIcon_LaunchCameraActivity_TakePicture() {
         // Create a bitmap we can use for our simulated camera image.
         Bitmap icon = BitmapFactory.decodeResource(
                 InstrumentationRegistry.getInstrumentation().getTargetContext().getResources(),
@@ -83,13 +85,18 @@ public class MainActivityInstrumentedTest {
         intending(toPackage("com.motorola.cameraone")).respondWith(result);
         intending(hasAction(ACTION_IMAGE_CAPTURE)).respondWith(result);
 
+        // Check no image data is displayed
+        onView(withId(R.id.my_recycler_view)).check(matches(hasChildCount(0)));
+
         // Click camera icon in toolbar.
         onView(withId(R.id.action_camera)).perform(click());
 
         // Check intent sent out for IMAGE_CAPTURE action.
         Intent receivedIntent = Iterables.getOnlyElement(Intents.getIntents());
         assertThat(receivedIntent).hasAction(ACTION_IMAGE_CAPTURE);
+
+        // Check picture was taken and image data is displayed in text view drawable
+        onView(withId(R.id.my_recycler_view)).check(matches(hasMinimumChildCount(1)));
+        onView(withId(R.id.photo_view)).check(matches(isDisplayed()));
     }
-
-
 }
